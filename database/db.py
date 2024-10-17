@@ -3,7 +3,7 @@ import pymysql
 DB_HOST = "localhost"
 DB_USER = "engel"
 DB_PASSWORD = "61218389"
-DB_NAME = "crystal"
+DB_NAME = "silk"
 
 def get_db_connection():
     return pymysql.connect(
@@ -39,30 +39,38 @@ def insert_user_into_db(username):
     finally:
         connection.close()
 
-def fetch_users_from_db():
-    """Получает всех пользователей со статусом 0 из базы данных."""
-    connection = get_db_connection()
+def fetch_users_from_db(limit=100):
+    """Получаем список пользователей из базы данных."""
+    connection = pymysql.connect(
+        host=DB_HOST,
+        user=DB_USER,
+        password=DB_PASSWORD,
+        database=DB_NAME
+    )
+    
     try:
         with connection.cursor() as cursor:
-            cursor.execute("SELECT username FROM users WHERE status = 0")
-            users = cursor.fetchall()
-            return [user['username'] for user in users]
-    except pymysql.MySQLError as e:
-        print(f"Ошибка при чтении пользователей из базы данных: {e}")
-        return []
+            sql_query = "SELECT username FROM users WHERE status = 0 LIMIT %s"
+            cursor.execute(sql_query, (limit,))
+            result = cursor.fetchall()
+            users = [row[0] for row in result]
+            return users
     finally:
         connection.close()
 
-def update_user_status_in_db(username, new_status):
-    """Обновляет статус пользователя в базе данных."""
-    connection = get_db_connection()
+def update_user_status_in_db(username, status):
+    """Обновляем статус пользователя в базе данных."""
+    connection = pymysql.connect(
+        host=DB_HOST,
+        user=DB_USER,
+        password=DB_PASSWORD,
+        database=DB_NAME
+    )
+    
     try:
         with connection.cursor() as cursor:
-            sql = "UPDATE users SET status = %s WHERE username = %s"
-            cursor.execute(sql, (new_status, username))
-            connection.commit()
-            print(f"Статус пользователя {username} обновлен на {new_status}.")
-    except pymysql.MySQLError as e:
-        print(f"Ошибка при обновлении статуса пользователя {username}: {e}")
+            sql_query = "UPDATE users SET status = %s WHERE username = %s"
+            cursor.execute(sql_query, (status, username))
+        connection.commit()
     finally:
         connection.close()

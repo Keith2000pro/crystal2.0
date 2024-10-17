@@ -1,129 +1,16 @@
 from pyrogram import Client
-from database.database import *
+from database.db import *
 import aiohttp, os
 
 apps = {
-    "Veraty2200": Client(
-                "clients/my_account0",               # Путь к сессии
-                24421121,                             # API ID
-                "f60f95cceb51346e5b28b1338c7162a6",  # API Hash
-                proxy={
-                    "hostname": "45.138.4.15",       
-                    "port": 63500,                   
-                    "scheme": "http",              
-                    "username": "B3us57G2",
-                    "password": "3mpRRj3q"
-                }
-            ),
-    # "xxx": Client(
-    #             "clients/xxx",               
-    #             24421121,                             
-    #             "f60f95cceb51346e5b28b1338c7162a6",  
-    #             proxy={
-    #                 "hostname": "45.138.4.15",       
-    #                 "port": 63500,                   
-    #                 "scheme": "http",              
-    #                 "username": "B3us57G2",
-    #                 "password": "3mpRRj3q"
-    #             }
-    #         ),
-    "Focys_00": Client(
-        "clients/my_account1", 25343396, "1a5633a3b2fbf9bf36c122bf1d9b6e9f",
-        proxy={
-                    "hostname": "185.246.220.176",       
-                    "port": 64412,                   
-                    "scheme": "http",              
-                    "username": "B3us57G2",
-                    "password": "3mpRRj3q"
-        }),
-
-    "Jdjfjjfghh": Client("clients/my_account2", 24025578, "b2d621697eaf188864f8df3f2c090e04",
-        proxy={
-                    "hostname": "178.130.56.207",       
-                    "port": 62730,                   
-                    "scheme": "http",              
-                    "username": "B3us57G2",
-                    "password": "3mpRRj3q"
-        }),
-
-    "good_Iike": Client("clients/my_account3", 27848721, "361a88c26010925fefbc01b18baf792e",
-        proxy={
-                    "hostname": "45.138.4.15",       
-                    "port": 63500,                   
-                    "scheme": "http",              
-                    "username": "B3us57G2",
-                    "password": "3mpRRj3q"
-                }),
-
-    "Iadycrystall": Client("clients/my_account4", 26664469, "5de0fd086d39de0dc8f55583ade9b770",
-        proxy={
-                    "hostname": "45.199.227.116",       
-                    "port": 63623,                   
-                    "scheme": "http",              
-                    "username": "B3us57G2",
-                    "password": "3mpRRj3q"
-        }),
-
-    "LOVEhjdn": Client(
-        "clients/my_account5", 21527337, "498d2702d39edc6a99ecec65b3622a1b",
-        proxy={
-            "hostname": "194.107.200.151",       
-            "port": 63195,                   
-            "scheme": "http",              
-            "username": "B3us57G2",
-            "password": "3mpRRj3q"
-            }),
-
-    "My_loveroud": Client("clients/my_account6", 26637833, "3f186327212d01e2941d1efd211a3c7c",
-        proxy={
-            "hostname": "45.138.4.15",       
-            "port": 63500,                   
-            "scheme": "http",              
-            "username": "B3us57G2",
-            "password": "3mpRRj3q"
-        }),
-    "ocknfbd": Client("clients/my_account7", 28196244, "ea0a55baf144b7d7969609d2c6f36922",
-        proxy={
-            "hostname": "45.138.4.15",       
-            "port": 63500,                   
-            "scheme": "http",              
-            "username": "B3us57G2",
-            "password": "3mpRRj3q"
-        }),
-    "djjdjdndkd6": Client("clients/my_account8", 23033281, "05b6275795ae899dd9016339baa43014",
-        proxy={
-            "hostname": "45.138.4.15",       
-            "port": 63500,                   
-            "scheme": "http",              
-            "username": "B3us57G2",
-            "password": "3mpRRj3q"
-        }),
-    "plxnbbs": Client("clients/my_account9", 29622314, "df404a2af9d721d8406b0863c759f000",
-        proxy={
-            "hostname": "45.138.4.15",       
-            "port": 63500,                   
-            "scheme": "http",              
-            "username": "B3us57G2",
-            "password": "3mpRRj3q"
-        }),
-        
-    "n_nxndjdjf": Client("clients/my_account10", 29638259, "9c564280c37eac5f048f40fd7d779602",
-        proxy={
-            "hostname": "45.138.4.15",       
-            "port": 63500,                   
-            "scheme": "http",              
-            "username": "B3us57G2",
-            "password": "3mpRRj3q"
-        }),
-
-    # "kckciviv": Client("clients/my_account11", 27017136, "d427423621141d6fb624a8d20867c57b",
-    #     proxy={
-    #         "hostname": "45.138.4.15",       
-    #         "port": 63500,                   
-    #         "scheme": "http",              
-    #         "username": "B3us57G2",
-    #         "password": "3mpRRj3q"
-    #     }),
+    "account_1": Client("clients/account_1", 25565955, "ef08c59b70e2ab0ab8731dd2b20ddac5"),
+    "account_2": Client("clients/account_2", 26647975, "19bee79986bd132c06ea66f6f641dc3e"),
+    "account_3": Client("clients/account_3", 20052802, "7a296138d59e67dfdbc43fdc25380c78"),
+    "account_4": Client("clients/account_4", 21164227, "b77a0021c2a501b3ebba5b6d6f87ed7f"),
+    "account_5": Client("clients/account_5", 26031042, "8c9be4ed111f4c6f5332b7af92c7f856"),
+    "account_6": Client("clients/account_6", 20788917, "8aae58fc7ab8ce4785f8f479011d3596"),
+    "account_7": Client("clients/account_7", 20898740, "f79fe2361c9f905a5eb994e8a3d32203"),
+    "account_8": Client("clients/account_8", 27107193, "e932ff38261e0fd64a571e61d4b05766"),
 }
 
 
